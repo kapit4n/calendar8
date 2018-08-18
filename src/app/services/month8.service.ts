@@ -7,7 +7,7 @@ export class Month8Service {
 
   constructor() { }
 
-  getMonthMatrix(start: Date, end: Date, month: number) {
+  generateMonthMatrix(start: Date, end: Date, month: number) {
     let result = [];
     let startAux = start;    
     while (startAux.getTime() < end.getTime() && startAux.getMonth() == month) {
@@ -19,9 +19,6 @@ export class Month8Service {
       }
       result.push(weekAux)
     }
-
-    // return the next start Date
-    //startAux.setDate(startAux.getDate() + 1);
 
     return { nextStartDay:startAux, monthResult: result};
   }

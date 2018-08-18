@@ -1,3 +1,19 @@
-<div *ngFor="let monthValue of monthValues">
-{{monthValue}}
+<div>
+    {{monthInfo.monthName}} {{monthInfo.currentYear}}
+</div>
+<div *ngFor="let week of monthInfo.monthResult">
+    <div *ngFor="let day of week; let i = index" [attr.data-index]="i" style="display: inline-block; width: 40px; border-style: groove; border-width: thin;">
+        <div *ngIf="day > 0 && i < 5" style="background-color: green;">
+             {{day}}
+        </div>
+        
+        <div *ngIf="day > 0 && i > 4" style="background-color: yellow;">
+             {{day}}
+        </div>
+        
+        <div *ngIf="day == 0" style="background-color: gray;">
+             {{day}}
+        </div>
+
+    </div>
 </div>
