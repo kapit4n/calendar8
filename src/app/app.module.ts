@@ -3,14 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { Month8Service } from './services/month8.service'
+import { Month8Component } from "./components/month8/month8.component";
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, Month8Component
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ Month8Service ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
