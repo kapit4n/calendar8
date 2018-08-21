@@ -34,8 +34,8 @@ export class Month8Service {
 
   generateCalendar8(startDateIn: string, nroDaysIn: number, countryCode: string, ) {
 
-    // generation crash with values more than 400
-    if (nroDaysIn > 400) [];
+    // generation crash with values more than 450
+    if (nroDaysIn > 450) return [];
 
     const aDay = 86400000;
     let dateSplitted = startDateIn.split('-').map(sp => Number(sp));

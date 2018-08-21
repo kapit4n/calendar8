@@ -1,7 +1,7 @@
 <div class="container">
     <div class="form-group">
       <label for="strDate">Start Date</label>
-      <input type="date" class="form-control" id="strDate" min="1" (ngModelChange)="startDateIn = $event"
+      <input type="date" class="form-control" id="strDate" (ngModelChange)="startDateIn = $event"
         [ngModel]="startDateIn" #strDate="ngModel" required>
       <div *ngIf="strDate.invalid" class="alert alert-danger">
         <div *ngIf="strDate.errors.required">
@@ -12,13 +12,18 @@
     
     <div class="form-group">
       <label for="">Number of Days</label>
-      <input id="nroOfDays" name="nroOfDays" class="form-control" required minlength="1" appForbiddenName="bob" [(ngModel)]="nroDaysIn"
+      <input id="nroOfDays" name="nroOfDays" class="form-control" required appForbiddenName="bob" [(ngModel)]="nroDaysIn"
         #nroOfDays="ngModel" type="number">
       <div *ngIf="nroOfDays.invalid" class="alert alert-danger">
         <div *ngIf="nroOfDays.errors.required">
           Number of days is required.
         </div>
-        <p *ngIf="nroOfDays.errors?.range">Must be in range</p>
+      </div>
+      <div *ngIf="nroOfDays.value > 450" class="alert alert-danger">
+        Nro of days should be less greater than or equal to 450
+      </div>
+      <div *ngIf="nroOfDays.value < 1" class="alert alert-danger">
+         Nro of days should be more than 0
       </div>
     </div>
 
@@ -34,17 +39,14 @@
 
     <div>
       <h3>{{nroDaysIn}} day Example</h3>
-      <div *ngFor="let day  of daysNamesI18N" style="padding: 10px;" style="display: inline-block; width: 40px; border-style: groove; border-width: thin;">
+      <div ></div>
+      <div *ngFor="let day of daysNamesI18N" style="padding: 10px;" style="display: inline-block; width: 40px; border-style: groove; border-width: thin;">
           <div>
             {{day}}
-          </div>
-        
+          </div>        
       </div>
     </div>
     <div *ngFor="let monthInfo of months">
       <app-month8 [monthInfo]="monthInfo"></app-month8>
     </div>
-
 </div>
-
-
