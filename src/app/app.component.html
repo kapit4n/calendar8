@@ -1,25 +1,46 @@
 <div class="container">
     <div class="form-group">
       <label for="strDate">Start Date</label>
-      <input type="date" class="form-control" id="strDate" (ngModelChange)="startDateIn = $event"
-        [ngModel]="startDateIn | date:'yyyy-MM-dd'">
+      <input type="date" class="form-control" id="strDate" min="1" (ngModelChange)="startDateIn = $event"
+        [ngModel]="startDateIn" #strDate="ngModel" required>
+      <div *ngIf="strDate.invalid" class="alert alert-danger">
+        <div *ngIf="strDate.errors.required">
+          Start Date is required.
+        </div>
+      </div>
     </div>
     
     <div class="form-group">
-      <label for="nroOfDays">Number of Days</label>
-      <input type="number" id="nroOfDays" [(ngModel)]="nroDaysIn">
+      <label for="">Number of Days</label>
+      <input id="nroOfDays" name="nroOfDays" class="form-control" required minlength="1" appForbiddenName="bob" [(ngModel)]="nroDaysIn"
+        #nroOfDays="ngModel" type="number">
+      <div *ngIf="nroOfDays.invalid" class="alert alert-danger">
+        <div *ngIf="nroOfDays.errors.required">
+          Number of days is required.
+        </div>
+        <p *ngIf="nroOfDays.errors?.range">Must be in range</p>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="ctCode">Country Code</label>
-      <select>
+      <select [(ngModel)]="countryCode">
         <option value="ES">ES</option>
         <option value="US">US</option>
       </select>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="generateCalendar8()">Generate</button>
+    <button type="submit" class="btn btn-primary" (click)="generateCalendar8()">RUN</button>
 
+    <div>
+      <h3>{{nroDaysIn}} day Example</h3>
+      <div *ngFor="let day  of daysNamesI18N" style="padding: 10px;" style="display: inline-block; width: 40px; border-style: groove; border-width: thin;">
+          <div>
+            {{day}}
+          </div>
+        
+      </div>
+    </div>
     <div *ngFor="let monthInfo of months">
       <app-month8 [monthInfo]="monthInfo"></app-month8>
     </div>
